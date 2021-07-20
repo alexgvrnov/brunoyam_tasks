@@ -1,7 +1,7 @@
 p_correct = False
 while p_correct == False:
 	p = input("Введите пароль:")
-	if len(p)>8:
+	if len(p) > 8:
 		p_sl = False
 		p_su = False
 		for symbol in p:
