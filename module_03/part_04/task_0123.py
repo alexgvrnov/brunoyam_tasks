@@ -1,40 +1,37 @@
 import json
 import os.path
 
+
 def register(login, passwd):
+	not_registered = True
 
-	r = True
+	with open('p.json', 'r') as file:
+		users_d = json.load(file)
 
-	usersd = {}
-
-	with open('p.json','r') as file:
-		usersd = json.load(file)
-
-	for k in usersd.keys():
+	for k in users_d.keys():
 		if k == login:
-			r = False
+			not_registered = False
 
-	if r:
-		usersd[login] = passwd
+	if not_registered:
+		users_d[login] = passwd
 		with open('p.json','w') as file:
-			json.dump(usersd, file)
+			json.dump(users_d, file)
 
-	return r
+	return not_registered
+
 
 def login_function(login, passwd):
-
-	r = False
-
-	usersd = {}
+	registered = False
 
 	with open('p.json','r') as file:
-		usersd = json.load(file)
+		users_d = json.load(file)
 
-	for x, y in usersd.items():
+	for x, y in users_d.items():
 		if x == login and y == passwd:
-			r = True 
+			registered = True
 	
-	return r			
+	return registered
+
 
 usersinit = {'admin': 'admin'}
 

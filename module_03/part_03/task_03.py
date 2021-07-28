@@ -1,51 +1,25 @@
-def num_compare(x,y):
+def f_key_sort(x):
+    xf = float(x)
 
-	xf = float(x)
-	yf = float(y)
-	r = 0
+    while (xf // 10) > 0:
+        xf /= 10
 
-	while (xf // 10) > 0:
-		xf /= 10
+    return xf
 
-	while (yf // 10) > 0:
-		yf /= 10
 
-	if xf > yf:
-		r = x
-	else:
-		r = y
-
-	return r
-		 
 def num_max(l):
+    l.sort(key=f_key_sort, reverse=True)
 
-	rr = 0
-	rs = ''
+    rs = ''
 
-	while len(l) > 0:
+    for elem in l:
+        rs += str(elem)
 
-		max = l[0]
-		maxx = 0
+    return int(rs)
 
-		for x in l:
-			if num_compare(x,max) == x:
-				max = x
-		
-		rs += str(max)
-		l.remove(max)
 
-	rr = int(rs)
+print('Введите список чисел через пробел: ')
 
-	return rr
+input_list = [int(x) for x in input().split()]
 
-ll = []
-
-n = int(input('Введите количество чисел: '))
-
-for x in range(n):
-	xx = int(input('Введите число: '))
-	ll.append(xx)
-
-res = num_max(ll)
-
-print(res)
+print(num_max(input_list))

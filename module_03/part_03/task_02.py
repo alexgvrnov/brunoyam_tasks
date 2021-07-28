@@ -10,6 +10,7 @@ s = '''Было просто пасмурно, дуло с севера
 Если знаешь как жить - живи
 Ты хотела плыть как все - так плыви!'''
 
+
 def f_make_word(s):
 
 	sl = [',', '.', '!', '-']
@@ -17,26 +18,21 @@ def f_make_word(s):
 	for c in sl:
 		s = s.replace(c, '')
 
-	return(s)
+	return s
+
 
 def f_list_less_5(l):
 
 	rl = []
 
-	l1 = l.split(sep = '\n')
+	words = l.split()
 
-	for i1 in l1:
-		l2 = i1.split(sep = ' ')
-
-		for i2 in l2:
-			ws = f_make_word(i2)
-
-			if len(ws) < 5 and ws != '':
-				rl.append(ws)
+	for word in words:
+		correct_word = f_make_word(word)
+		if len(correct_word) < 5 and correct_word != '':
+			rl.append(correct_word)
 
 	return rl
 
-ss = f_list_less_5(s)
-
 print(s)
-print(ss)
+print(f_list_less_5(s))

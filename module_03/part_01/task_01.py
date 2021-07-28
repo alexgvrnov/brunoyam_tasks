@@ -4,7 +4,7 @@ y = float(input('Y:'))
 
 while y > x:
 	x += x * p / 100
-	x = ((x * 100) // 1) / 100
+	x = int(x * 100) / 100
 	print(x)
 	print('---')
 print('X больше или равно Y')	

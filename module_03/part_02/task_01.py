@@ -1,15 +1,12 @@
-l = []
-ll = []
+duplicates = []
 
-n = int(input('Количество элементов списка N:'))
+print('Введите элементы списка через пробел:')
 
-for x in range(n):
-	c = input('Введите элемент списка:')
-	l.append(c)
+input_list = [int(x) for x in input().split()]
 
-for s in l:
-	if (l.count(s)) > 1 and ll.count(s) != 1:
-		ll.append(s)
+for elem in input_list:
+	if elem not in duplicates and input_list.count(elem) > 1:
+		duplicates.append(elem)
 		
-print(l)
-print(ll)		
+print(input_list)
+print(duplicates)
