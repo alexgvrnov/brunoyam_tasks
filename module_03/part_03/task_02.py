@@ -21,6 +21,18 @@ def f_make_word(s):
 	return s
 
 
+def f_make_word_2(word):
+	exeptions = (',', '.', '!', '-')
+
+	while word.startswith(exeptions):
+		word = word[1:]
+
+	while word.endswith(exeptions):
+		word = word[:-1]
+
+	return word
+
+
 def f_list_less_5(l):
 
 	rl = []
@@ -28,11 +40,12 @@ def f_list_less_5(l):
 	words = l.split()
 
 	for word in words:
-		correct_word = f_make_word(word)
+		correct_word = f_make_word_2(word)
 		if len(correct_word) < 5 and correct_word != '':
 			rl.append(correct_word)
 
 	return rl
+
 
 print(s)
 print(f_list_less_5(s))

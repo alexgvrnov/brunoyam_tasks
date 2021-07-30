@@ -1,9 +1,9 @@
-summa = 0
+sm = 0
 
 x = int(input('X:'))
 
 while x != 0:
-	summa += x % 10
+	sm += x % 10
 	x //= 10
 
-print(summa)
+print(sm)
