@@ -4,35 +4,44 @@ n = 23
 
 l_num = [randint(0, 100) for i in range(n)]
 
-print(l_num)
+
+def bin_search(l_number, number):
+
+    not_found = True
+
+    min_num = 0
+    max_num = len(l_number)
+
+    position = 0
+
+    while not_found:
+
+        position = min_num + int((max_num-min_num) / 2)
+
+        if l_number[position] == number:
+            not_found = False
+
+        if (position == min_num) and not_found:
+            position = -1
+            not_found = False
+
+        if l_number[position] > number:
+            max_num = position
+        else:
+            min_num = position
+
+    return position
+
 
 l_num.sort()
 
 print(l_num)
 
-number = int(input('Введите число для поиска: '))
+num = int(input('Введите число для поиска: '))
 
-not_found = True
+result = bin_search(l_num, num)
 
-min_num = 0
-max_num = n
-
-
-while not_found:
-
-    current = min_num + int((max_num-min_num) / 2)
-
-    print(min_num, max_num, current)
-
-    if l_num[current] == number:
-        print('Число найдено, позиция в списке = ', current)
-        not_found = False
-
-    if (current == min_num) and not_found:
-        print('Число не найдено')
-        not_found = False
-
-    if l_num[current] > number:
-        max_num = current
-    else:
-        min_num = current
+if result != -1:
+    print('Число найдено, позиция в списке:', result)
+else:
+    print('Число не найдено')

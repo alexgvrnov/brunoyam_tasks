@@ -1,9 +1,4 @@
-graph_main = {0: {3, 5},
-              1: {2, 3, 4, 5},
-              2: {1},
-              3: {0, 1},
-              4: {1, 5},
-              5: {0, 1, 4}}
+graph_main = [[3, 5], [2, 3, 4, 5], [1], [0, 1], [1, 5], [0, 1, 4]]
 
 
 def f_graph_search(graph, l_layer, l_path):
@@ -14,7 +9,7 @@ def f_graph_search(graph, l_layer, l_path):
 
     for node in l_layer:
 
-        for elem in graph.get(node):
+        for elem in graph[node]:
 
             if (elem not in l_path) and (elem not in l_next_layer):
 
@@ -23,8 +18,6 @@ def f_graph_search(graph, l_layer, l_path):
     if len(l_next_layer) != 0:
 
         f_graph_search(graph, l_next_layer, l_path)
-
-    pass
 
 
 print(graph_main)

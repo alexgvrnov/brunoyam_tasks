@@ -4,8 +4,6 @@ n = 23
 
 l_num = [randint(0, 100) for i in range(n)]
 
-print(l_num)
-
 
 def f_item_positioning(l_update, position):
 
@@ -17,13 +15,16 @@ def f_item_positioning(l_update, position):
 
             f_item_positioning(l_update, position - 1)
 
-    pass
+
+def insertion_sort(l_upd):
+
+    for x in range(1, len(l_upd)):
+
+        f_item_positioning(l_upd, x)
 
 
-for x in range(1, n):
+print(l_num)
 
-    f_item_positioning(l_num, x)
+insertion_sort(l_num)
 
-    print('')
-    print('Шаг:', x)
-    print(l_num)
+print(l_num)
