@@ -3,18 +3,15 @@ import json
 
 class Model:
 
-    cake = 0
-    souce = 2
+    def __init__(self):
+
+        self.cake = 99
+        self.souce = 33
+        self.coffee = 44
 
     def _save(self):
 
-        d = {}
-
-        for attr in dir(self):
-
-            if not attr.startswith('_'):
-
-                d[attr] = getattr(self, attr)
+        d = {key: getattr(self, key) for key in list(filter(lambda attr: not attr.startswith('_'), dir(self)))}
 
         with open('attributes.json', 'w') as file:
             json.dump(d, file)
@@ -24,8 +21,12 @@ class Model:
 
 class ModelChild(Model):
 
-    stake = 1
-    pizza = 4
+    def __init__(self):
+
+        super().__init__()
+
+        self.stake = 55
+        self.pizza = 77
 
 
 m = ModelChild()

@@ -3,15 +3,17 @@ from random import randint
 
 class Warrior:
 
-    health = 100
+    def __init__(self, name, health):
 
-    def __init__(self, name):
         self.name = name
+        self.health = health
 
     def get_damage(self):
+
         self.health -= 20
 
     def is_alive(self):
+
         alive = True
 
         if self.health < 1:
@@ -24,8 +26,8 @@ class WarriorAdvanced(Warrior):
 
     def __init__(self, name, health, armor, stamina):
 
-        self.name = name
-        self.health = health
+        super().__init__(name, health)
+
         self.armor = armor
         self.stamina = stamina
 
@@ -46,7 +48,7 @@ class WarriorAdvanced(Warrior):
         if self.health < 0:
             self.health = 0
 
-        print(self.name, '\033[91mattacks\033[0m')
+        print(f'{self.name} \033[91mattacks\033[0m')
 
     def f_defend(self, enemy_action, enemy_stamina):
 
@@ -74,16 +76,17 @@ class WarriorAdvanced(Warrior):
         if self.health < 0:
             self.health = 0
 
-        print(self.name, '\033[94mdefends\033[0m')
+        print(f'{self.name} \033[94mdefends\033[0m')
 
     def f_print_status(self):
-        print(self.name, 'health:', self.health, 'armor:', self.armor, 'stamina:', self.stamina)
+
+        print(f'{self.name} health: {self.health} armor: {self.armor} stamina: {self.stamina}')
 
 
 def f_fight_simple(name1, name2):
 
-    warrior1 = Warrior(name1)
-    warrior2 = Warrior(name2)
+    warrior1 = Warrior(name1, 100)
+    warrior2 = Warrior(name2, 100)
 
     fight_not_finished = True
 
@@ -95,7 +98,7 @@ def f_fight_simple(name1, name2):
 
             warrior2.get_damage()
 
-            print(warrior1.name, 'hits', warrior2.name, '.', warrior2.name, 'health left', warrior2.health)
+            print(f'{warrior1.name} hits {warrior2.name} . {warrior2.name} health left {warrior2.health}')
 
             if not warrior2.is_alive():
 
@@ -106,11 +109,11 @@ def f_fight_simple(name1, name2):
 
             warrior1.get_damage()
 
-            print(warrior2.name, 'hits', warrior1.name, '.', warrior1.name, 'health left', warrior1.health)
+            print(f'{warrior2.name} hits {warrior1.name} . {warrior1.name} health left {warrior1.health}')
 
             if not warrior1.is_alive():
 
-                print(warrior2.name, 'WINS !')
+                print(f'{warrior2.name} WINS !')
                 fight_not_finished = False
 
 

@@ -4,54 +4,82 @@ from random import randint
 class Point:
 
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self.__x = x
+        self.__y = y
 
     def __add__(self, other):
 
-        return Point(self.x + other.x, self.y + other.y)
+        return Point(self.__x + other.__x, self.__y + other.__y)
 
     def __sub__(self, other):
 
-        return Point(self.x - other.x, self.y - other.y)
+        return Point(self.__x - other.__x, self.__y - other.__y)
 
-    def f_scalar_mul(self, scalar):
+    def __mul__(self, other):
 
-        self.x *= scalar
-        self.y *= scalar
+        x = 0
+        y = 0
+
+        if type(other) == int:
+
+            x = self.__x * other
+            y = self.__y * other
+
+        else:
+
+            raise TypeError('Multiplication is possible only with scalar (int type)')
+
+        return Point(x, y)
 
     def f_length(self):
 
-        return (self.x ** 2 + self.y ** 2) ** 0.5
+        return (self.__x ** 2 + self.__y ** 2) ** 0.5
 
     def __str__(self):
-        return f'{self.x, self.y}'
+
+        return f'{self.__x, self.__y}'
 
 
-p1 = Point(randint(-10, 10), randint(-10, 10))
-p2 = Point(randint(-10, 10), randint(-10, 10))
+def main_task():
 
-print('Point 1: ', str(p1))
-print('Point 2: ', str(p2))
+    p1 = Point(randint(-10, 10), randint(-10, 10))
+    p2 = Point(randint(-10, 10), randint(-10, 10))
 
-p3 = p1 + p2
+    print('Point 1: ', str(p1))
+    print('Point 2: ', str(p2))
 
-print('Sum: ', str(p3))
+    p3 = p1 + p2
 
-p3 = p1 - p2
+    print('Sum: ', str(p3))
 
-print('Sub : ', str(p3))
+    p3 = p1 - p2
 
-print('Length 1: ', p1.f_length())
-print('Length 2: ', p2.f_length())
+    print('Sub : ', str(p3))
 
-sc = randint(2, 10)
+    print('Length 1: ', p1.f_length())
+    print('Length 2: ', p2.f_length())
 
-print('Scalar :', sc)
+    sc = randint(2, 10)
 
-p1.f_scalar_mul(sc)
-p2.f_scalar_mul(sc)
+    print('Scalar for Point 1 :', sc)
 
-print('Point 1 scalar multiplication :', str(p1))
+    try:
+        p1 *= sc
+    except TypeError:
+        print('Multiplication is possible only with scalar (int type)')
 
-print('Point 2 scalar multiplication :', str(p2))
+    print(str(p1))
+
+    sc = 'trend to follow'
+
+    print('Scalar for Point 2:', sc)
+
+    try:
+        p2 *= sc
+    except TypeError:
+        print('Multiplication is possible only with scalar (int type)')
+
+    print(str(p2))
+
+
+main_task()
