@@ -4,15 +4,12 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
 
-def lists_update(rates_list, dates, rates):
+def lists_update(rates_list):
 
-    for i in range(3, len(rates_list), 3):
+    rates = [float(str(rates_list[i-1])[4: -5]) for i in range(len(rates_list)-1, 3, -3)]
+    dates = [str(rates_list[i-2])[6: -5] for i in range(len(rates_list)-1, 3, -3)]
 
-        dates.append(str(rates_list[i])[6: -5])
-        rates.append(float(str(rates_list[i+1])[4: -5]))
-
-    dates.reverse()
-    rates.reverse()
+    return dates, rates
 
 
 def main_task():
@@ -25,21 +22,18 @@ def main_task():
 
     rates_list = rates.find_all('td')
 
-    dates = []
-    rates = []
+    dates, rates = lists_update(rates_list)
 
-    lists_update(rates_list, dates, rates)
+    fig, ax = plt.subplots()
 
-    figure = plt.figure()
-    axis = figure.add_subplot()
+    ax.xaxis.set_major_locator(MaxNLocator(4))
+    ax.grid(True)
 
-    axis.xaxis.set_major_locator(MaxNLocator(4))
-    axis.grid(True)
+    ax.set_title('RUB / USD rate', fontsize=15)
+    ax.set_xlabel('Date', fontsize=12, color='blue')
+    ax.set_ylabel('Rate', fontsize=12, color='blue')
+    ax.plot(dates, rates)
 
-    plt.title('RUB / USD rate', fontsize=15)
-    plt.xlabel('Date', fontsize=12, color='blue')
-    plt.ylabel('Rate', fontsize=12, color='blue')
-    plt.plot(dates, rates)
     plt.show()
 
 
