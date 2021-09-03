@@ -14,7 +14,7 @@ class Student(Model):
 
     class Meta:
 
-        db_table = 'Students'
+        db_table = 'student'
         database = conn
 
 
@@ -27,7 +27,7 @@ class Course(Model):
 
     class Meta:
 
-        db_table = 'Courses'
+        db_table = 'course'
         database = conn
 
 
@@ -38,7 +38,7 @@ class StudentCourse(Model):
 
     class Meta:
 
-        db_table = 'Students_courses'
+        db_table = 'student_course'
         database = conn
 
 
